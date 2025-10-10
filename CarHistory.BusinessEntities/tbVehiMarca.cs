@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarHistory.BusinessEntities
+﻿namespace CarHistory.BusinessEntities
 {
     public class tbVehiMarca
     {
@@ -13,7 +7,7 @@ namespace CarHistory.BusinessEntities
         public string vehiMarDescripcion { get; set; }
         public byte[] vehiMarLogo { get; set; }
         public int vehiMarEstado { get; set; }
-     
+
         public tbVehiMarca()
         {
             vehiMarId = 0;
