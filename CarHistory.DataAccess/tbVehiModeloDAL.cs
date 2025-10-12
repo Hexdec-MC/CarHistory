@@ -50,6 +50,43 @@ namespace CarHistory.DataAccess
         }
 
 
+        public tbVehiModelo VerTbVehiModeloByVehiModeId(int vehiModeId)
+        {
+            tbVehiModelo item = new tbVehiModelo();
+
+            using (var oConexion = new SqlConnection(CadenaDeConexion()))
+            {
+                oConexion.Open();
+                using (SqlCommand oCommand = new SqlCommand("proVerTbVehiModeloByVehiModeId", oConexion))
+                {
+                    oCommand.CommandType = CommandType.StoredProcedure;
+                    oCommand.Parameters.Add(new SqlParameter("@vehiModeId", vehiModeId));
+
+                    IDataReader reader = oCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        item.vehiModeId = Convert.ToInt32(reader["vehiModeId"]);
+                        item.vehiMarId = Convert.ToInt32(reader["vehiMarId"]);
+                        item.vehiCateId = Convert.ToInt32(reader["vehiCateId"]);
+                        item.vehiModeNombre = Convert.ToString(reader["vehiModeNombre"]);
+                        item.vehiModeDescripcion = Convert.ToString(reader["vehiModeDescripcion"]);
+                        item.vehiModeCombustible = Convert.ToString(reader["vehiModeCombustible"]);
+                        item.vehiModeRodaje = Convert.ToString(reader["vehiModeRodaje"]);
+                        item.vehiModeAro = Convert.ToString(reader["vehiModeAro"]);
+                        item.vehiModeAnio = Convert.ToString(reader["vehiModeAnio"]);
+                        item.vehiModeImagen = (byte[])(reader["vehiModeImagen"]);
+                        item.vehiModeEstado = Convert.ToInt32(reader["vehiModeEstado"]);
+
+                        // [], [], [], [], [], []
+
+                        break;
+                    }
+                    reader.Close();
+                }
+                oConexion.Close();
+            }
+            return item;
+        }
 
         public List<tbVehiModelo> VerTbVehiModeloCombustible()
         {
@@ -156,5 +193,52 @@ namespace CarHistory.DataAccess
 
             return lista;
         }
+
+        public List<tbVehiModelo> VerTbVehiModeloTodo()
+        {
+            List<tbVehiModelo> lista = new List<tbVehiModelo>();
+            tbVehiModelo item;
+            try
+            {
+                using (var oConexion = new SqlConnection(CadenaDeConexion()))
+                {
+                    oConexion.Open();
+                    using (SqlCommand oCommand = new SqlCommand("proVerTbVehiModeloTodo", oConexion))
+                    {
+                        oCommand.CommandType = CommandType.StoredProcedure;
+
+                        IDataReader reader = oCommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            item = new tbVehiModelo();
+                            item.vehiModeId = Convert.ToInt32(reader["vehiModeId"]);
+                            item.vehiMarId = Convert.ToInt32(reader["vehiMarId"]);
+                            item.vehiCateId = Convert.ToInt32(reader["vehiCateId"]);
+                            item.vehiModeNombre = Convert.ToString(reader["vehiModeNombre"]);
+                            item.vehiModeDescripcion = Convert.ToString(reader["vehiModeDescripcion"]);
+                            item.vehiModeCombustible = Convert.ToString(reader["vehiModeCombustible"]);
+                            item.vehiModeRodaje = Convert.ToString(reader["vehiModeRodaje"]);
+                            item.vehiModeAro = Convert.ToString(reader["vehiModeAro"]);
+                            item.vehiModeAnio = Convert.ToString(reader["vehiModeAnio"]);
+                            item.vehiModeEstado = Convert.ToInt32(reader["vehiModeEstado"]);
+
+                            // [], [], [], [], [], [], [], [], [], [vehiModeImagen], []
+
+                            lista.Add(item);
+                        }
+                        reader.Close();
+                    }
+                    oConexion.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return lista;
+        }
+
+
     }
 }

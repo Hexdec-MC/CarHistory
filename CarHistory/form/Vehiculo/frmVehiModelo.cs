@@ -21,7 +21,7 @@ namespace CarHistory.form.Vehiculo
         string accion = "";
         string rutaFoto = "";
         string resultado = "Error";
-        tbVehiMarca VehiMarca = new tbVehiMarca();
+        tbVehiModelo VehiMarca = new tbVehiModelo();
         public frmVehiModelo(tbUsuario usuario, tbMenu menu) : base(usuario, menu)
         {
             InitializeComponent();
@@ -58,15 +58,15 @@ namespace CarHistory.form.Vehiculo
 
         private void dgridLista_SelectionChanged(object sender, EventArgs e)
         {
-            //if (this.dgridLista.SelectedRows.Count > 0)
-            //{
-            //    posDataGrid = this.dgridLista.SelectedRows[0].Index;
-            //    DataGridViewRow row = this.dgridLista.Rows[posDataGrid];
+            if (this.dgridLista.SelectedRows.Count > 0)
+            {
+                posDataGrid = this.dgridLista.SelectedRows[0].Index;
+                DataGridViewRow row = this.dgridLista.Rows[posDataGrid];
 
-            //    _vehiModeId = Convert.ToInt32(row.Cells["vehiModeId"].Value.ToString());
+                _vehiModeId = Convert.ToInt32(row.Cells["vehiModeId"].Value.ToString());
 
-            //    RellenarItem();
-            //}
+                RellenarItem();
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -260,27 +260,51 @@ namespace CarHistory.form.Vehiculo
         }
         private void RellenarItem()
         {
-            //string estado = "Activo";
-            //VehiMarca = (new tbVehiMarcaBL()).VerTbVehiMarcaByVehiMarId(_vehiMarId);
-            //this.txtVehiModeNombre.Text = VehiMarca.vehiMarNombre;
-            //this.txtVehiModeDescripcion.Text = VehiMarca.vehiMarDescripcion;
-            //Byte[] image;
-            //image = VehiMarca.vehiMarLogo;
-            //MemoryStream stream = new MemoryStream(image);
-            //this.picVehiModeImagen.Image = Image.FromStream(stream);
+            VehiMarca = (new tbVehiModeloBL()).VerTbVehiModeloByVehiModeId(_vehiModeId);
 
-            //if (VehiMarca.vehiMarEstado == 0)
-            //{
-            //    estado = "Inactivo";
-            //}
-            //cmbVehiModeEstado.Text = estado;
+            // Campos de texto
+            this.txtVehiModeNombre.Text = VehiMarca.vehiModeNombre;
+            this.txtVehiModeDescripcion.Text = VehiMarca.vehiModeDescripcion;
+
+            // Combos
+            this.cmbVehiMarId.SelectedValue = VehiMarca.vehiMarId;
+            this.cmbVehiCateId.SelectedValue = VehiMarca.vehiCateId;
+            this.cmbVehiModeCombustible.Text = VehiMarca.vehiModeCombustible;
+            this.cmbVehiModeRodaje.Text = VehiMarca.vehiModeRodaje;
+            this.cmbVehiModeAro.Text = VehiMarca.vehiModeAro;
+
+            // Año
+            this.numVehiModeAnio.Text = VehiMarca.vehiModeAnio;
+
+            // Estado
+            this.cmbVehiModeEstado.Text = VehiMarca.vehiModeEstado == 1 ? "Activo" : "Inactivo";
+
+            // Imagen
+            if (VehiMarca.vehiModeImagen != null && VehiMarca.vehiModeImagen.Length > 0)
+            {
+                try
+                {
+                    using (MemoryStream stream = new MemoryStream(VehiMarca.vehiModeImagen))
+                    {
+                        this.picVehiModeImagen.Image = Image.FromStream(stream);
+                    }
+                }
+                catch
+                {
+                    this.picVehiModeImagen.Image = picInicio.Image;
+                }
+            }
+            else
+            {
+                this.picVehiModeImagen.Image = picInicio.Image;
+            }
         }
         private void ListarVehiculo()
         {
             try
             {
                 dgridLista.AutoGenerateColumns = false;
-                List<tbVehiMarca> lista = (new tbVehiMarcaBL()).VerTbVehiMarcaLikeVehiMarNombre("");
+                List<tbVehiModelo> lista = (new tbVehiModeloBL().VerTbVehiModeloTodo());
                 dgridLista.DataSource = lista;
 
                 if (posDataGridGuardar != posDataGrid && posDataGrid == 0)

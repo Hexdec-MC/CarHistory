@@ -18,6 +18,12 @@ namespace CarHistory.BusinessLogic
         }
 
 
+        public tbVehiModelo VerTbVehiModeloByVehiModeId(int vehiModeId)
+        {
+            return VehiModeloDAL.VerTbVehiModeloByVehiModeId(vehiModeId);
+        }
+
+
         public List<tbVehiModelo> VerTbVehiModeloCombustible()
         {
             return VehiModeloDAL.VerTbVehiModeloCombustible();
@@ -29,6 +35,11 @@ namespace CarHistory.BusinessLogic
         public List<tbVehiModelo> VerTbVehiModeloRodaje()
         {
             return VehiModeloDAL.VerTbVehiModeloRodaje();
+        }
+
+        public List<tbVehiModelo> VerTbVehiModeloTodo()
+        {
+            return VehiModeloDAL.VerTbVehiModeloTodo();
         }
     }
 }
