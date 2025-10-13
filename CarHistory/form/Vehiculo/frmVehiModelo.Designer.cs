@@ -421,6 +421,7 @@
             vehiModeId.HeaderText = "vehiModeId";
             vehiModeId.Name = "vehiModeId";
             vehiModeId.ReadOnly = true;
+            vehiModeId.Visible = false;
             // 
             // vehiModeNombre
             // 
