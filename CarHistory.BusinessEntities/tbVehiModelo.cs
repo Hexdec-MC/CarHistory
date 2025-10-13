@@ -14,6 +14,10 @@
         public byte[] vehiModeImagen { get; set; }
         public int vehiModeEstado { get; set; }
 
+        // Propiedades adicionales para mostrar en el grid
+        public string vehiMarNombre { get; set; }
+        public string vehiCateINombre { get; set; }
+
         public int vehiModeCombId { get; set; }
         public string vehiModeCombNombre { get; set; }
         public string vehiModeCombDescripcion { get; set; }
@@ -39,6 +43,9 @@
             vehiModeAnio = string.Empty;
             vehiModeImagen = new byte[0];
             vehiModeEstado = 0;
+
+            vehiMarNombre = string.Empty;
+            vehiCateINombre = string.Empty;
 
             vehiModeCombId = 0;
             vehiModeCombNombre = string.Empty;

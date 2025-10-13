@@ -222,6 +222,10 @@ namespace CarHistory.DataAccess
                             item.vehiModeAnio = Convert.ToString(reader["vehiModeAnio"]);
                             item.vehiModeEstado = Convert.ToInt32(reader["vehiModeEstado"]);
 
+                            // Leer nombres de Marca y Categoría para mostrar en el grid
+                            item.vehiMarNombre = Convert.ToString(reader["vehiMarNombre"]);
+                            item.vehiCateINombre = Convert.ToString(reader["vehiCateINombre"]);
+
                             // [], [], [], [], [], [], [], [], [], [vehiModeImagen], []
 
                             lista.Add(item);

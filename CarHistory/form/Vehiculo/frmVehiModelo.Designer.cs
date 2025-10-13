@@ -64,8 +64,8 @@
             vehiModeRodaje = new DataGridViewTextBoxColumn();
             vehiMarNombre = new DataGridViewTextBoxColumn();
             vehiCateINombre = new DataGridViewTextBoxColumn();
+            vehiModeCombustible = new DataGridViewTextBoxColumn();
             vehiModeDescripcion = new DataGridViewTextBoxColumn();
-            vehiModeEstado = new DataGridViewCheckBoxColumn();
             groupLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgridLista).BeginInit();
             groupItem.SuspendLayout();
@@ -90,7 +90,7 @@
             dgridLista.AllowUserToAddRows = false;
             dgridLista.AllowUserToDeleteRows = false;
             dgridLista.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgridLista.Columns.AddRange(new DataGridViewColumn[] { vehiModeId, vehiModeNombre, vehiModeRodaje, vehiMarNombre, vehiCateINombre, vehiModeDescripcion, vehiModeEstado });
+            dgridLista.Columns.AddRange(new DataGridViewColumn[] { vehiModeId, vehiModeNombre, vehiModeRodaje, vehiMarNombre, vehiCateINombre, vehiModeCombustible, vehiModeDescripcion });
             dgridLista.Location = new Point(6, 22);
             dgridLista.Name = "dgridLista";
             dgridLista.ReadOnly = true;
@@ -441,11 +441,12 @@
             // 
             // vehiMarNombre
             // 
+            vehiMarNombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             vehiMarNombre.DataPropertyName = "vehiMarNombre";
             vehiMarNombre.HeaderText = "Marca";
             vehiMarNombre.Name = "vehiMarNombre";
             vehiMarNombre.ReadOnly = true;
-            vehiMarNombre.Width = 150;
+            vehiMarNombre.Width = 65;
             // 
             // vehiCateINombre
             // 
@@ -454,6 +455,13 @@
             vehiCateINombre.Name = "vehiCateINombre";
             vehiCateINombre.ReadOnly = true;
             // 
+            // vehiModeCombustible
+            // 
+            vehiModeCombustible.DataPropertyName = "vehiModeCombustible";
+            vehiModeCombustible.HeaderText = "Combustible";
+            vehiModeCombustible.Name = "vehiModeCombustible";
+            vehiModeCombustible.ReadOnly = true;
+            // 
             // vehiModeDescripcion
             // 
             vehiModeDescripcion.DataPropertyName = "vehiModeDescripcion";
@@ -461,14 +469,6 @@
             vehiModeDescripcion.Name = "vehiModeDescripcion";
             vehiModeDescripcion.ReadOnly = true;
             vehiModeDescripcion.Width = 390;
-            // 
-            // vehiModeEstado
-            // 
-            vehiModeEstado.DataPropertyName = "vehiModeEstado";
-            vehiModeEstado.HeaderText = "Estado";
-            vehiModeEstado.Name = "vehiModeEstado";
-            vehiModeEstado.ReadOnly = true;
-            vehiModeEstado.Width = 80;
             // 
             // frmVehiModelo
             // 
@@ -534,7 +534,7 @@
         private DataGridViewTextBoxColumn vehiModeRodaje;
         private DataGridViewTextBoxColumn vehiMarNombre;
         private DataGridViewTextBoxColumn vehiCateINombre;
+        private DataGridViewTextBoxColumn vehiModeCombustible;
         private DataGridViewTextBoxColumn vehiModeDescripcion;
-        private DataGridViewCheckBoxColumn vehiModeEstado;
     }
 }
